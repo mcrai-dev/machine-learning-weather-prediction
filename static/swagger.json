@@ -1,0 +1,65 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Weather Prediction API",
+      "description": "API pour prédire les conditions météorologiques basées sur une date donnée",
+      "version": "1.0.0"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/predict": {
+        "post": {
+          "summary": "Prédiction météorologique",
+          "description": "Prédiction météorologique basée sur la date fournie",
+          "parameters": [
+            {
+              "name": "date",
+              "in": "body",
+              "description": "La date pour laquelle la prédiction est requise (format YYYY-MM-DD)",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "example": "2045-01-06"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Prédiction réussie",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "predicted_precipitation": {
+                    "type": "number"
+                  },
+                  "predicted_temp_max": {
+                    "type": "number"
+                  },
+                  "predicted_temp_min": {
+                    "type": "number"
+                  },
+                  "predicted_wind": {
+                    "type": "number"
+                  },
+                  "predicted_weather": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Pas assez de données pour la prédiction"
+            }
+          }
+        }
+      }
+    }
+  }
+  
